@@ -8,13 +8,4 @@ export default defineConfig({
             refresh: true,
         }),
     ],
-    server: {
-        open: true, // при запуске открываем страницу в браузере
-        host: true, // создаём хост для подключения из локальной сети
-        port: 8080,
-        strictPort: true,
-        watch: {
-            usePolling: true
-        }
-    }
 });
