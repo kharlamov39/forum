@@ -24,7 +24,7 @@ Route::get('/', function () {
 })->name('home');
 
 
-Route::prefix('/register')->group( function() {
+Route::prefix('/register')->middleware('guest')->group( function() {
     Route::get('', [RegisterController::class, 'index'])->name('register.index');
     Route::post('', [RegisterController::class, 'store'])->name('register.store');
 });
