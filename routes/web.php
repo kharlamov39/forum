@@ -8,6 +8,8 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 
+use App\Http\Controllers\UsersController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,3 +44,6 @@ Route::post('/reset-password', [ResetPasswordController::class, 'store'])->name(
 Route::get('/email/verify', [VerifyEmailController::class, 'index'])->middleware('auth')->name('verification.notice');
 Route::post('/email/verify', [VerifyEmailController::class, 'send'])->middleware('auth')->name('verification.send');
 Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, 'verify'])->middleware(['auth', 'signed'])->name('verification.verify');
+
+
+Route::get('/users', [UsersController::class, 'index'])->name('users.index');
