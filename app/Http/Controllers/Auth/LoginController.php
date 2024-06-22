@@ -29,7 +29,7 @@ class LoginController extends Controller
         } 
         
         $request->session()->regenerate();
-        return redirect()->intended('/')->with('success', 'Вы успешно вошли на сайт');
+        return redirect()->intended('/')->with('status', 'Вы успешно вошли на сайт');
     }
 
     public function logout(Request $request) 
