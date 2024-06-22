@@ -46,4 +46,4 @@ Route::post('/email/verify', [VerifyEmailController::class, 'send'])->middleware
 Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, 'verify'])->middleware(['auth', 'signed'])->name('verification.verify');
 
 
-Route::get('/users', [UsersController::class, 'index'])->name('users.index');
+Route::get('/users', [UsersController::class, 'index'])->middleware('admin')->name('users.index');

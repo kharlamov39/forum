@@ -18,8 +18,8 @@ class LoginController extends Controller
     public function store(Request $request) 
     {
         $request->validate([
-            'email:required|string|email|max:255',
-            'password:required|string|min:4'
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|string|min:4'
         ]);
 
         if(!Auth::attempt($request->only('email', 'password'), $request->boolean('remember'))) {

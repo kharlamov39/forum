@@ -58,7 +58,13 @@ class User extends Authenticatable implements MustVerifyEmail
         parent::boot();
 
         static::creating(function ($user) {
-            $user->role_id = 2;
+            if (User::count() == 0) {
+                // Первый пользователь получает роль администратора
+                $user->role_id = 1;
+            } else {
+                // Все остальные пользователи получают роль обычного пользователя
+                $user->role_id = 2;
+            }
         });
     }
 }
