@@ -29,9 +29,9 @@ Route::prefix('/register')->middleware('guest')->group( function() {
     Route::post('', [RegisterController::class, 'store'])->name('register.store');
 });
 
-Route::get('/login', [LoginController::class, 'index'])->name('login.index');
-Route::post('/login', [LoginController::class, 'store'])->name('login.store');
-Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout');
+Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login.index');
+Route::post('/login', [LoginController::class, 'store'])->middleware('guest')->name('login.store');
+Route::get('/logout', [LoginController::class, 'logout'])->middleware('auth')->name('login.logout');
 
 Route::get('/forgot-password', [ForgotPasswordController::class, 'create'])->middleware('guest')->name('forgot-password.create');
 Route::post('/forgot-password', [ForgotPasswordController::class, 'store'])->middleware('guest')->name('forgot-password.store');
