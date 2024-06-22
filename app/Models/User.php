@@ -48,6 +48,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Role::class);
     }
 
+    public function isAdmin()
+    {
+        return $this->role_id === 1;
+    }
+
     protected static function boot()
     {
         parent::boot();
