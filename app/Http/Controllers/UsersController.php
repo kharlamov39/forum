@@ -13,4 +13,12 @@ class UsersController extends Controller
         $users = User::all();
         return view('users', ['users' => $users]);
     }
+
+    public function delete($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('users.index');
+    }
 }

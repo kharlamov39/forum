@@ -47,3 +47,4 @@ Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, 'verify']
 
 
 Route::get('/users', [UsersController::class, 'index'])->middleware('admin')->name('users.index');
+Route::delete('/users/{id}', [UsersController::class, 'delete'])->middleware('admin')->name('users.delete');
