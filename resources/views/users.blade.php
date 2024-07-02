@@ -15,7 +15,11 @@
             <tr>
                 <th scope="row">{{ $user->id }}</th>
                 <td> {{ $user->name }}</td>
-                <td> {{ $user->email }}</td>
+                @if($user->email_verified_at)
+                    <td> {{ $user->email }}</td>
+                @else 
+                    <td style="color: red;"> {{ $user->email }}</td>
+                @endif
                 <td>{{ $user->role->name }}</td>
                 <td>
                     @if(!$user->isAdmin())

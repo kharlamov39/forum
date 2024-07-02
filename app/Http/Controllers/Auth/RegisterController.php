@@ -43,7 +43,7 @@ class RegisterController extends Controller
 
         Auth::login($user);
 
-        // event(new Registered($user));
+        event(new Registered($user));
 
         return redirect()->route('home')->with('success', 'Вы успешно зарегистрировались на сайте');
     }

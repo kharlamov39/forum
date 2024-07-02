@@ -12,7 +12,6 @@
             </div>
         
             <button>Отправить ссылку на почту</button>    
-
         </form>
     </div>
 </x-layout>
