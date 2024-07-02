@@ -10,7 +10,7 @@ class UsersController extends Controller
 {
     public function index() 
     {
-        $users = User::all();
+        $users = User::with('role')->get();
         return view('users', ['users' => $users]);
     }
 
