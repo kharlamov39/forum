@@ -11,7 +11,7 @@
           <a class="nav-link" aria-current="page" href="/">Главная</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Создать тему +</a>
+          <a class="nav-link" href="{{ route('topics.index') }}">Темы</a>
         </li>
 
         @auth 

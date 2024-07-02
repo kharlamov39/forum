@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\TopicController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,3 +49,5 @@ Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, 'verify']
 
 Route::get('/users', [UsersController::class, 'index'])->middleware('admin')->name('users.index');
 Route::delete('/users/{id}', [UsersController::class, 'delete'])->middleware('admin')->name('users.delete');
+
+Route::get('/topics', [TopicController::class, 'index'])->name('topics.index');
