@@ -23,7 +23,7 @@
                     @if (!Auth::user()->hasVerifiedEmail())
                       <li><a class="dropdown-item" href="{{ route('verification.notice') }}">Подтвердить email</a></li>
                     @endif
-                    <li><a class="dropdown-item" href="#">Профиль</a></li>
+                    <li><a class="dropdown-item" href="{{ route('dashboard') }}">Профиль</a></li>
                     <li><a class="dropdown-item" href="#">Мои посты</a></li>
                     <li><a class="dropdown-item" href="#">Рейтинг</a></li>
                     <li><hr class="dropdown-divider"></li>

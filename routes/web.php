@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\TopicController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,3 +52,10 @@ Route::get('/users', [UsersController::class, 'index'])->middleware('admin')->na
 Route::delete('/users/{id}', [UsersController::class, 'delete'])->middleware('admin')->name('users.delete');
 
 Route::get('/topics', [TopicController::class, 'index'])->name('topics.index');
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [ProfileController::class, 'index'])->name('dashboard');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+});
