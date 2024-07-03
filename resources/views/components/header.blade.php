@@ -16,8 +16,8 @@
 
         @auth 
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Личный кабинет
+                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  {{ Auth::user()->name }}
                 </a>
                 <ul class="dropdown-menu">
                     @if (!Auth::user()->hasVerifiedEmail())
@@ -30,16 +30,17 @@
                     <li><a class="dropdown-item" href="{{ route('login.logout') }}">Выйти</a></li>
                 </ul>
             </li>  
-            <li class="nav-item mx-5">
-              <a class="nav-link">{{ Auth::user()->name }}</a>
-            </li> 
+             
         @else 
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('register.index') }}">Регистрация</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('login.index') }}">Войти</a>
-            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Гость
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{{ route('register.index') }}">Регистрация</a></li>
+                    <li><a class="dropdown-item" href="{{ route('login.index') }}">Войти</a></li>
+                </ul>
+            </li>  
         @endauth
       </ul>
     </div>

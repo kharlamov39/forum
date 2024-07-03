@@ -9,7 +9,10 @@ class TopicController extends Controller
 {
     public function index()
     {
-        $topics = Topic::all();
+        $topics = Topic::with(['user' => function ($query) {
+            $query->select('id', 'name');
+        }])->get();
+        
         return view('topics.index', ['topics' => $topics]);
     }
 }
