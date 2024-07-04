@@ -9,10 +9,8 @@ class TopicController extends Controller
 {
     public function index()
     {
-        $topics = Topic::with(['user' => function ($query) {
-            $query->select('id', 'name');
-        }])->get();
-        
+        $topics = Topic::with(['user', 'latestComment'])->withCount('comments')->get();
+
         return view('topics.index', ['topics' => $topics]);
     }
 }

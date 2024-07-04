@@ -4,10 +4,6 @@
         <button class="btn btn-primary">Создать тему +</button>
     </div>
 
-    <?php 
-    // dd($topics);
-    ?>
-
     <table class="table table-hover">
         <thead>
             <tr>
@@ -20,10 +16,28 @@
         <tbody>
             @foreach($topics as $topic)
                 <tr>
-                    <th scope="row">{{ $topic->text }}</th>
+                    <th scope="row">
+                        <a href="">
+                          {{ $topic->text }}  
+                        </a>
+                    </th>
                     <td>{{ $topic->user->name }}</td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ $topic->comments_count }}</td>
+                    <td>
+                        @if ($topic->comments_count)
+                        <p class="my-0">
+                            {{ $topic->latestComment->text }}
+                        </p>
+                        <a href="">{{ $topic->latestComment->user->name }}</a>
+                        @php
+                            // Преобразуем время комментария в нужный формат
+                            $formattedDateTime = \Carbon\Carbon::parse($topic->latestComment->created_at)->isoFormat('D MMMM YYYY H:mm');
+                        @endphp
+                        <span>
+                            {{ $formattedDateTime }}
+                        </span>        
+                        @endif
+                    </td>
                 </tr>
             @endforeach
         </tbody>
