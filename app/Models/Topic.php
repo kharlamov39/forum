@@ -11,7 +11,7 @@ class Topic extends Model
 
     protected $table = 'topics';
 
-    protected $fillable = ['title', 'body', 'is_published'];
+    protected $fillable = ['text', 'body', 'is_published', 'user_id'];
 
     public function user()
     {

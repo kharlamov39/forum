@@ -1,7 +1,7 @@
 <x-layout>
     <div class="d-flex align-items-center justify-content-between">
         <h1 class="text-center my-5">Темы</h1>
-        <button class="btn btn-primary">Создать тему +</button>
+        <a class="btn btn-primary" href="{{ route('topics.create') }}">Создать тему +</a>
     </div>
 
     <table class="table table-hover">
@@ -17,7 +17,7 @@
             @foreach($topics as $topic)
                 <tr>
                     <th scope="row">
-                        <a href="">
+                        <a href="{{ route('topics.show', $topic->id) }}">
                           {{ $topic->text }}  
                         </a>
                     </th>

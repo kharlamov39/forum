@@ -52,6 +52,9 @@ Route::get('/users', [UsersController::class, 'index'])->middleware('admin')->na
 Route::delete('/users/{id}', [UsersController::class, 'delete'])->middleware('admin')->name('users.delete');
 
 Route::get('/topics', [TopicController::class, 'index'])->name('topics.index');
+Route::get('/topics/create', [TopicController::class, 'create'])->middleware('auth')->name('topics.create');
+Route::post('/topics/create', [TopicController::class, 'store'])->middleware('auth')->name('topics.store');
+Route::get('/topics/{id}', [TopicController::class, 'show'])->name('topics.show');
 
 
 Route::middleware(['auth'])->group(function () {
