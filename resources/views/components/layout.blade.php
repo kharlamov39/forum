@@ -63,6 +63,10 @@
             font-weight: 700;
         }
 
+        span.admin {
+            color: red;
+        }
+
         @media (max-width: 768px) {
             /* .left-cell, .right-cell {
                 flex: 0 0 100%;

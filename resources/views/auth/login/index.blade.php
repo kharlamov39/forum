@@ -39,9 +39,11 @@
             </div>
             
             <button type="submit" class="btn btn-primary mb-3">Войти</button>
-            <div>
+            <div class="d-flex justify-content-between">
                 <a href="{{ route('forgot-password.create') }}">Забыл пароль</a>
+                <a href="{{ route('register.index') }}">Зарегистрироваться</a>
             </div>
+            
             
         </form>
     </div>
