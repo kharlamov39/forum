@@ -10,7 +10,7 @@ class TopicController extends Controller
 {
     public function index()
     {
-        $topics = Topic::with(['user', 'latestComment'])->withCount('comments')->get();
+        $topics = Topic::with(['user:id,name', 'latestComment'])->withCount('comments')->get();
 
         return view('topics.index', ['topics' => $topics]);
     }
@@ -46,11 +46,11 @@ class TopicController extends Controller
 
     public function show($id)
     {
-        $topic = Topic::with(['user' => function ($query) {
-            $query->select('id', 'name');
-        }, 'comments' => function ($query) {
-            $query->with('user:id,name')->latest();
-        }])->findOrFail($id);
+        $topic = Topic::with([
+            'user:id,name,created_at,role_id', 
+            'comments.user:id,name,created_at,role_id'
+        ])
+        ->findOrFail($id);
 
         return view('topics.show', ['topic' => $topic]);
     }

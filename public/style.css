@@ -1,0 +1,29 @@
+
+.table-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.table-cell {
+    padding: 8px;
+    border: 1px solid #dee2e6;
+    box-sizing: border-box;
+}
+
+.full-width {
+    flex: 0 0 100%;
+}
+
+.left-cell {
+    flex: 0 0 25%;
+}
+
+.right-cell {
+    flex: 0 0 75%;
+}
+
+@media (max-width: 768px) {
+    .left-cell, .right-cell {
+        flex: 0 0 100%;
+    }
+}

@@ -13,6 +13,63 @@
 
     </head>
     <body>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .table-comment {
+            border-left: 1px solid #ccd4db;
+            border-right: 1px solid #ccd4db;
+        }
+        
+        .table-row {
+            display: flex;
+            /* flex-wrap: wrap; */
+            border-bottom: 1px solid #ccd4db;
+        }
+
+        .table-cell {
+            padding: 8px;
+            
+            box-sizing: border-box;
+        }
+
+        .table-row .table-cell:first-child {
+            border-right: 1px solid #ccd4db;
+            background: #E1E4F2;
+        }
+
+        .full-width {
+            width: 100%;
+            background-color: rgb(13,110,253) !important;
+            color: white;
+        }
+
+        .left-cell {
+            min-width: 140px;
+        }
+
+        .right-cell {
+            width: 100%;
+        }
+
+        .user-info {
+            font-size: 12px;
+        }
+
+        .topic-name {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            /* .left-cell, .right-cell {
+                flex: 0 0 100%;
+            } */
+        }
+    </style>
+
         <x-header/>
             {{ $slot }}
         <x-footer/>
