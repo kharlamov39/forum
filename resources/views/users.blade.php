@@ -22,16 +22,14 @@
                 @endif
                 <td>{{ $user->role->name }}</td>
                 <td>
-                    @if(!$user->isAdmin())
-                        <a href="" class="btn btn-danger delete-link"  data-bs-toggle="modal" data-bs-target="#exampleModal"> 
-                           <form style="display: none;" action="{{ route('users.delete', $user->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <input type="submit">
-                           </form>
-                            Delete
-                        </a>
-                    @endif
+                    <a href="" class="btn btn-danger delete-link"  data-bs-toggle="modal" data-bs-target="#exampleModal"> 
+                        <form style="display: none;" action="{{ route('users.delete', $user->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit">
+                        </form>
+                        Delete
+                    </a>
                 </td>
             </tr>
             @endforeach

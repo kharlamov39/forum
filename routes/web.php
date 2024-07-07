@@ -11,6 +11,7 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,9 @@ Route::get('/topics', [TopicController::class, 'index'])->name('topics.index');
 Route::get('/topics/create', [TopicController::class, 'create'])->middleware('auth')->name('topics.create');
 Route::post('/topics/create', [TopicController::class, 'store'])->middleware('auth')->name('topics.store');
 Route::get('/topics/{id}', [TopicController::class, 'show'])->name('topics.show');
+
+Route::post('/topics/{topicId}', [CommentController::class, 'store'])->name('comment.store');
+Route::delete('/topics/{topicId}/comments{commentId}', [CommentController::class, 'delete'])->middleware('admin')->name('comment.delete');
 
 
 Route::middleware(['auth'])->group(function () {

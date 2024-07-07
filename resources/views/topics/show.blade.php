@@ -37,10 +37,20 @@
         @if($topic->comments)
             @foreach($topic->comments as $comment)
                 <div class="table-comment">
-                    <div class="table-row">
+                    <div class="table-row" style="position: relative;">
                         <div class="table-cell full-width">
                             {{ $comment->created_at->isoFormat('D MMMM YYYY H:mm') }}
                         </div>
+                        @if(Auth::user()->isAdmin())
+                            <form action="{{ route('comment.delete', ['topicId' => $topic->id, 'commentId' => $comment->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button style="position: absolute; top: 0; right: 0px; height: 100%; border-radius: 0px;" class="btn btn-danger" type="submit">
+                                    Удалить
+                                </button>
+                            </form>
+                        @endif
+
                     </div>
                     <div class="table-row">
                         <div class="table-cell left-cell ">
@@ -70,6 +80,25 @@
                 </div>
             @endforeach
         @endif
+
+        @auth
+            @if(session('error'))
+            <div class="alert alert-danger mb-0 container">
+                {{ session('error') }}
+            </div>
+            @endif
+            <form action="{{ route('comment.store', $topic->id) }}" method="POST" class="my-5" id="#commentForm">
+                @csrf
+                <div class="mb-3">
+                    <label class="form-label" for="comment">Ваш комментарий</label>
+                    <textarea class="form-control" name="comment" id="comment"></textarea>
+                </div>
+                <input type="hidden" name="topic_id" value="{{ $topic->id }}">
+                <button class="btn btn-primary" type="submit">
+                    Отправить
+                </button>
+            </form>
+        @endauth
 
         <!-- комментарии -->
     </div>
