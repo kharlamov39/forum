@@ -7,6 +7,7 @@ use App\Models\Topic;
 use App\Models\User;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
+use App\Actions\ShowTopicAction;
 
 class TopicController extends Controller
 {
@@ -59,27 +60,13 @@ class TopicController extends Controller
 
     public function show($id)
     {
-
-        $topic = Topic::with([
-            'user:id,name,created_at,role_id'
-        ])
-        ->findOrFail($id);
-
-         // Пагинация комментариев
-        $comments = Comment::where('topic_id', $id)
-        ->with('user:id,name,created_at,role_id')
-        ->paginate(10);
-
-        $userIds = $topic->comments->pluck('user_id')->unique();
-
+        $action = new ShowTopicAction();
+        $data = $action->handle($id);
         
-        $users = User::select('id')
-        ->whereIn('id', $userIds)
-        ->withCount('comments')
-        ->withCount('topics')
-        ->get()
-        ->keyBy('id');
-        
-        return view('topics.show', ['topic' => $topic, 'users' => $users, 'comments' => $comments]);
+        return view('topics.show', [
+            'topic' => $data['topic'], 
+            'users' => $data['users'], 
+            'comments' => $data['comments']
+        ]);
     }
 }
