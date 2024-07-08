@@ -8,25 +8,18 @@ use App\Models\User;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 use App\Actions\ShowTopicAction;
+use App\Actions\AllTopicsAction;
 
 class TopicController extends Controller
 {
     public function index()
     {
-       // Подзапрос для получения ID самого последнего комментария каждой темы
-    $latestCommentIdSubquery = Comment::select('id')
-        ->whereColumn('topic_id', 'topics.id')
-        ->latest('id')
-        ->limit(1);
-
-    // Основной запрос с присоединением подзапроса и сортировкой
-    $topics = Topic::with(['user:id,name', 'latestComment'])
-        ->withCount('comments')
-        ->addSelect(['latest_comment_id' => $latestCommentIdSubquery])
-        ->orderByDesc('latest_comment_id')
-        ->get();
-
-        return view('topics.index', ['topics' => $topics]);
+       $action = new AllTopicsAction();
+       $data = $action->handle();
+    
+        return view('topics.index', [
+            'topics' => $data['topics']
+        ]);
     }
 
     public function create()
