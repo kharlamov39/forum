@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Topic;
+use App\Models\User;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 
@@ -58,12 +59,27 @@ class TopicController extends Controller
 
     public function show($id)
     {
+
         $topic = Topic::with([
-            'user:id,name,created_at,role_id', 
-            'comments.user:id,name,created_at,role_id'
+            'user:id,name,created_at,role_id'
         ])
         ->findOrFail($id);
 
-        return view('topics.show', ['topic' => $topic]);
+         // Пагинация комментариев
+        $comments = Comment::where('topic_id', $id)
+        ->with('user:id,name,created_at,role_id')
+        ->paginate(10);
+
+        $userIds = $topic->comments->pluck('user_id')->unique();
+
+        
+        $users = User::select('id')
+        ->whereIn('id', $userIds)
+        ->withCount('comments')
+        ->withCount('topics')
+        ->get()
+        ->keyBy('id');
+        
+        return view('topics.show', ['topic' => $topic, 'users' => $users, 'comments' => $comments]);
     }
 }

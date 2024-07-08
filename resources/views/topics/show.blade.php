@@ -25,6 +25,10 @@
                         </span>
                     @endif
                     <p>
+                        Создано тем: {{ $users[$topic->user->id]->topics_count }}<br>
+                        Сообщений: {{ $users[$topic->user->id]->comments_count }}
+                    </p>
+                    <p>
                     Зарегистрирован: <br> {{ $topic->user->created_at->isoFormat('D MMMM YYYY H:mm') }}
                     </p>
                 </div>
@@ -34,8 +38,8 @@
             </div>
         </div>
         
-        @if($topic->comments)
-            @foreach($topic->comments as $comment)
+        @if($comments)
+            @foreach($comments as $comment)
                 <div class="table-comment">
                     <div class="table-row" style="position: relative;">
                         <div class="table-cell full-width">
@@ -69,6 +73,10 @@
                                     Администратор
                                 </span>
                             @endif
+                            <p>
+                                Создано тем: {{ $users[$comment->user->id]->topics_count }}<br>
+                                Сообщений: {{ $users[$comment->user->id]->comments_count }}
+                            </p>
                            <p>
                             Зарегистрирован: <br> {{ $comment->user->created_at->isoFormat('D MMMM YYYY H:mm') }}
                            </p>
