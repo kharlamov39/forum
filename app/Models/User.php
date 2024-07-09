@@ -82,13 +82,10 @@ class User extends Authenticatable implements MustVerifyEmail
             }
         });
 
-        static::creating(function ($user) {
-            // Создание записи в таблице profiles для нового пользователя
-
-            dd($user);
-            $user->profile()->create([
-                'user_id' => $user->id
-            ]);
+        static::created(function ($user) {
+            $user->profile()->create([]);
         });
     }
+
+    
 }
