@@ -81,5 +81,14 @@ class User extends Authenticatable implements MustVerifyEmail
                 $user->role_id = 2;
             }
         });
+
+        static::creating(function ($user) {
+            // Создание записи в таблице profiles для нового пользователя
+
+            dd($user);
+            $user->profile()->create([
+                'user_id' => $user->id
+            ]);
+        });
     }
 }
