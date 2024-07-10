@@ -51,6 +51,14 @@ span.admin {
     color: red;
 }
 
+.profile-edit input, .profile-edit textarea {
+    height: 100%; 
+    display: block;
+    border: none; 
+    outline: none;
+    width: fit-content;
+}
+
 @media (max-width: 768px) {
     /* .left-cell, .right-cell {
         flex: 0 0 100%;

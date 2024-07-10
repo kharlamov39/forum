@@ -61,8 +61,6 @@ Route::post('/topics/{topicId}', [CommentController::class, 'store'])->name('com
 Route::delete('/topics/{topicId}/comments{commentId}', [CommentController::class, 'delete'])->middleware('admin')->name('comment.delete');
 
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [ProfileController::class, 'index'])->name('dashboard');
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
-});
+Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
+Route::get('/profile/{id}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::put('/profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
