@@ -1,4 +1,7 @@
 <x-layout>
+    <x-slot name="title">
+        Все пользователи
+    </x-slot>
     <table class="table mt-5">
         <h2 class="text-center my-5">Users</h2>
         <thead>

@@ -1,4 +1,7 @@
 <x-layout>
+    <x-slot name="title">
+        Создать тему
+    </x-slot>
     <h2 class="my-5">Новая тема</h2>
 
     <form action="{{ route('topics.store') }}" method="POST">

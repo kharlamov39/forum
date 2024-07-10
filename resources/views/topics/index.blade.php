@@ -1,4 +1,7 @@
 <x-layout>
+    <x-slot name="title">
+        Темы форума
+    </x-slot>
     <div class="d-flex align-items-center justify-content-between">
         <h1 class="text-center my-5">Темы</h1>
         <a class="btn btn-primary" href="{{ route('topics.create') }}">Создать тему +</a>

@@ -1,4 +1,7 @@
 <x-layout>
+    <x-slot name="title">
+        Регистрация
+    </x-slot>
     <div class="mt-5 mx-auto" style="max-width: 500px; width: 100%;">
         <h2 class="mb-4 text-center">Регистрация</h2>
         @if ($errors->any())

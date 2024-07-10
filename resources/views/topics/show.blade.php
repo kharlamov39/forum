@@ -1,4 +1,7 @@
 <x-layout>
+    <x-slot name="title">
+        {{ $topic->text }}
+    </x-slot>
     <div class="my-5">
 
         <div class="table-comment">
